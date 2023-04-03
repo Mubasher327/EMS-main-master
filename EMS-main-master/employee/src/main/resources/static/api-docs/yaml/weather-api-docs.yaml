@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: Employee API
+  description: Rest API for Employee
+  version: 1.0.0
+  contact:
+    email: muhammadmubasher327@gmail.com
+
+tags:
+  - name: Employee
+    description: Endoints for Employee
+  - name: Department
+    description: Endpoints for Department
+
+paths:
+  /Employee/save:
+    post:
+      tags:
+        - Employee
+      summary: Endpoint to save Employee
+      operationId: countrySave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeModel'
+      responses:
+        '200':
+          description: Successful employee record has been saved or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeModel'
+  /Department/save:
+    post:
+      tags:
+        - Department
+      summary: Endpoint to save Department
+      operationId: departmentsave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeModel'
+      responses:
+        '200':
+          description: Successful employee department record has been saved or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeModel'
+
+components:
+
+  schemas:
+    EmployeeModel:
+      type: object
+      properties:
+        empl_Id:
+          type: integer
+          format: int64
+        first_name:
+          type: string
+        last_name:
+          type: string
+        age:
+          type: integer
+          format: int32
+        designation:
+          type: string
+        salary:
+          type: number
+          format: double
+
+    DepartmentModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        depart_name:
+          type: string
+        description:
+          type: string
+        Salary_range:
+          type: number
+          format: double
