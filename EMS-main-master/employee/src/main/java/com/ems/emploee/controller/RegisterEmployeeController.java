@@ -54,5 +54,9 @@ public class RegisterEmployeeController {
         return registeredEmployeeServices.getEmployee(empl_Id);
 }
 
+//@GetMapping("List/{id}")
+//private List<EmployeeModel> getAllEmployees() {
+//    return registeredEmployeeServices.getAllEmployees();
+//}
 
 }

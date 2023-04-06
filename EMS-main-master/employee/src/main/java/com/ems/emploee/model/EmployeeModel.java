@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class EmployeeModel {
-    private int Id;
+    private int id;
     private String firstName;
     private String lastName;
     private String gender;
@@ -14,6 +14,7 @@ public class EmployeeModel {
     private String designation;
     private double salary;
     private DepartmentModel departmentModel;
+
 
     public static String addAttribute(String employee, EmployeeModel employeeModel)
     {
@@ -24,7 +25,7 @@ public class EmployeeModel {
     public Employee dissamble(){
 
     Employee employee=new Employee();
-    employee.setId(Id);
+    employee.setId(id);
     employee.setFirstName(firstName);
     employee.setLastName(lastName);
     employee.setGender(gender);

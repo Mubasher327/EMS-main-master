@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  title: EMS API
+  description: Rest API for Employee Management System
+  version: 1.0.0
+  contact:
+    email: muhammadmubasher327@gmail.com
+
+tags:
+  - name: Employee
+    description: Endpoints for Employee
+  - name: Department
+    description: Endpoints for Department
+  - name: Attendance
+    description: Endpoints for Attendance
+
+paths:
+  /Employee/save:
+    post:
+      tags:
+        - Employee
+      summary: Endpoint to save Employee
+      operationId: employeeSave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeModel'
+      responses:
+        '200':
+          description: Successful employee record has been saved or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeModel'
+
+    delete:
+      tags:
+        - Employee
+      summary: Endpoint to save Employee
+      operationId: employeedelete
+      responses:
+        '200':
+          description: Successful employee record has been deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeModel'
+  /Department/save:
+    post:
+      tags:
+        - Department
+      summary: Endpoint to save Department
+      operationId: departmentsave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DepartmentModel'
+      responses:
+        '200':
+          description: Successful employee department record has been saved or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentModel'
+    delete:
+      tags:
+        - Department
+      summary: Endpoint to delete Deparment
+      operationId: departmentdelete
+      responses:
+        '200':
+          description: Successful employee department record has been deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentModel'
+
+  /Attendance/save:
+    post:
+      tags:
+        - Attendance
+      summary: Endpoint to save Attendance
+      operationId: attendanceSave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeModel'
+      responses:
+        '200':
+          description: Successful employee attendance has been saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeModel'
+    delete:
+      tags:
+        - Attendance
+      summary: Endpoint to delete Employee Attendance
+      operationId: Attendancedelete
+      responses:
+        '200':
+          description: Successful employee attendance record has been deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentModel'
+
+components:
+
+  schemas:
+    EmployeeModel:
+      type: object
+      properties:
+        empl_Id:
+          type: integer
+          format: int64
+        first_name:
+          type: string
+        last_name:
+          type: string
+        age:
+          type: integer
+          format: int32
+        designation:
+          type: string
+        salary:
+          type: number
+          format: double
+
+    DepartmentModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        depart_name:
+          type: string
+        description:
+          type: string
+        Salary_range:
+          type: number
+          format: double

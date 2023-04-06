@@ -7,6 +7,8 @@ import com.ems.emploee.model.EmployeeModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegisteredEmployeeService {
 
@@ -14,6 +16,8 @@ public class RegisteredEmployeeService {
  private registeredemployeerepository registeremployeeRepo;
 
 @Autowired DepartmentService departmentService;
+
+
 
  public EmployeeModel addEmployee(EmployeeModel employee){
   Department department=departmentService.getDepartEntity(employee.getDepartmentModel().getId());
@@ -34,4 +38,8 @@ public class RegisteredEmployeeService {
   return new EmployeeModel().assemble(registeremployeeRepo.findById(empl_id).get());
  }
 
+// public List<EmployeeModel> getAllEmployees() {
+//  EmployeeModel=registeredemployeereposito
+//  return EmployeeModel;
+// }
 }
