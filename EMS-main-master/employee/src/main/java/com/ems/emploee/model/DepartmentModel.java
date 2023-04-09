@@ -4,18 +4,24 @@ import com.ems.emploee.entity.Department;
 import com.ems.emploee.entity.Employee;
 import com.ems.emploee.services.RegisteredEmployeeService;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 @Data
+@NoArgsConstructor
 public class DepartmentModel {
-    int id;
+    long id;
     private String name;
     private String description;
 
-
+    public DepartmentModel(Department department){
+        this.setId(department.getId());
+        this.setName(department.getName());
+        this.setDescription(department.getDescription());
+    }
     public Department dissamble(){
         Department department=new Department();
 
@@ -24,13 +30,12 @@ public class DepartmentModel {
         department.setDescription(description);
 
 
-
         return department;
     }
 
     public DepartmentModel assemble(Department department){
 
-        DepartmentModel departmentModel=new DepartmentModel();
+        DepartmentModel departmentModel=new DepartmentModel(null);
         departmentModel.setId(department.getId());
         departmentModel.setName(department.getName());
         departmentModel.setDescription(department.getDescription());

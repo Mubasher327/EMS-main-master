@@ -6,6 +6,10 @@ import com.ems.emploee.model.DepartmentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Service
 public class DepartmentService {
     @Autowired
@@ -16,11 +20,14 @@ public class DepartmentService {
         return  department.assemble(jobdepartmentRepo.save(department.dissamble()));
     }
 
-    public String deleteDepartment(int departId) {
+    public String deleteDepartment(long departId) {
         jobdepartmentRepo.deleteById(departId);
         return "Employee Department Details Deleted SuccessFully";
     }
-    public Department getDepartEntity(int id){
+    public Department getDepartEntity(long id){
         return jobdepartmentRepo.findById(id).get();
+    }
+    public List<DepartmentModel> getDepartment(){
+        return jobdepartmentRepo.findAll().stream().map(DepartmentModel::new).collect(Collectors.toList());
     }
 }

@@ -1,24 +1,33 @@
 package com.ems.emploee.model;
 import com.ems.emploee.entity.Employee;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
+@NoArgsConstructor
 public class EmployeeModel {
-    private int id;
-    private String firstName;
-    private String lastName;
+    private long id;
+    private String fullName;
+    private String email;
+    private String phoneNo;
     private String gender;
     private int age;
     private String designation;
     private double salary;
     private DepartmentModel departmentModel;
 
-
-    public static String addAttribute(String employee, EmployeeModel employeeModel)
-    {
-        return "Employee registered Successfully";
+    public EmployeeModel(Employee employee){
+        this.setId(employee.getId());
+        this.setFullName(employee.getFullName());
+        this.setEmail(employee.getEmail());
+        this.setPhoneNo(employee.getPhoneNo());
+        this.setGender(employee.getGender());
+        this.setAge(employee.getAge());
+        this.setDesignation(employee.getDesignation());
+        this.setSalary(employee.getSalary());
+        this.setDepartmentModel(new DepartmentModel(employee.getDepartment()));
     }
 
 
@@ -26,8 +35,9 @@ public class EmployeeModel {
 
     Employee employee=new Employee();
     employee.setId(id);
-    employee.setFirstName(firstName);
-    employee.setLastName(lastName);
+    employee.setFullName(fullName);
+    employee.setEmail(email);
+    employee.setPhoneNo(phoneNo);
     employee.setGender(gender);
     employee.setAge(age);
     employee.setDesignation(designation);
@@ -39,12 +49,13 @@ public class EmployeeModel {
 
 public EmployeeModel assemble(Employee employee){
 
-    EmployeeModel employeeModel=new EmployeeModel();
-    DepartmentModel departmentModel1=new DepartmentModel();
+    EmployeeModel employeeModel=new EmployeeModel(null);
+    DepartmentModel departmentModel1=new DepartmentModel(null);
 
     employeeModel.setId(employee.getId());
-    employeeModel.setFirstName(employee.getFirstName());
-    employeeModel.setLastName(employee.getLastName());
+    employeeModel.setFullName(employee.getFullName());
+    employeeModel.setEmail(employee.getEmail());
+    employeeModel.setPhoneNo(employee.getPhoneNo());
     employeeModel.setGender(employee.getGender());
     employeeModel.setAge(employee.getAge());
     employeeModel.setDesignation(employee.getDesignation());

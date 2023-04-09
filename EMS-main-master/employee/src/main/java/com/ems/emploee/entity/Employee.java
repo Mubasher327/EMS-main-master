@@ -1,5 +1,6 @@
 package com.ems.emploee.entity;
 
+import com.ems.emploee.model.EmployeeModel;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,11 +14,13 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="employee_id")
-    private int id;
-    @Column(name="first_name")
-    private String firstName;
-    @Column(name="last_name")
-    private String lastName;
+    private long id;
+    @Column(name="full_name")
+    private String fullName;
+    @Column(name="email")
+    private String email;
+    @Column(name="phone_no")
+    private String phoneNo;
     @Column(name="gender")
     private  String gender;
     @Column(name="age")

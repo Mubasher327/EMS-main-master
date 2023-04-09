@@ -5,9 +5,9 @@ import com.ems.emploee.entity.Employee;
 import com.ems.emploee.model.EmployeeModel;
 import com.ems.emploee.services.RegisteredEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -43,20 +43,23 @@ public class RegisterEmployeeController {
         registeredEmployeeServices.updateEmployee(employee);
     }
 @DeleteMapping("/delete/{id}")
-    public String deleteEmployee(@PathVariable("id") int empl_id){
+    public String deleteEmployee(@PathVariable("id") long empl_id){
        return registeredEmployeeServices.deleteEmployee(empl_id);
 }
 
 @GetMapping("/getById/{id}")
 
-   public EmployeeModel getEmployee(@PathVariable(name = "id") int empl_Id)
+   public EmployeeModel getEmployee(@PathVariable(name = "id") long empl_Id)
     {
         return registeredEmployeeServices.getEmployee(empl_Id);
 }
 
-//@GetMapping("List/{id}")
-//private List<EmployeeModel> getAllEmployees() {
-//    return registeredEmployeeServices.getAllEmployees();
-//}
-
+@GetMapping("/List")
+private List<EmployeeModel> getAllEmployees() {
+    return registeredEmployeeServices.getAllEmployees();
+}
+@GetMapping("/search")
+    private List<EmployeeModel> getEmployeeById(@PathVariable(value = "id")Long id){
+    return registeredEmployeeServices.findEmployee(id,null);
+}
 }

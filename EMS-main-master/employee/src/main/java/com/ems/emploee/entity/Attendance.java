@@ -11,15 +11,15 @@ import java.util.Date;
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column private int id;
+    @Column private long id;
     @Column(name="employee_present")
     private Boolean isEmplPresent;
     @Column(name="date")
     private Date date;
     @Column(name="time_in")
-    private int timeIn;
+    private String  timeIn;
     @Column(name="time_out")
-    private int timeOut;
+    private String timeOut;
     @ManyToOne
     @JoinColumn (name="employee_id")
     private Employee employ;

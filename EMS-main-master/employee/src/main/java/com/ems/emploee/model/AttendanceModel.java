@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class AttendanceModel {
-    private int id;
+    private long id;
     private Boolean isEmplPresent;
-    private int timeIn;
-    private int timeOut;
+    private String timeIn;
+    private String timeOut;
 
     private EmployeeModel employeeModel;
 

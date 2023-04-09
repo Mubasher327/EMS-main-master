@@ -6,6 +6,8 @@ import com.ems.emploee.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Department")
 public class DepartmentController {
@@ -21,5 +23,10 @@ public class DepartmentController {
     public String deleteDepartment(@PathVariable("id") int depart_id){
         return jobDepartmentService.deleteDepartment(depart_id);
     }
+    @GetMapping("/list")
+    public List<DepartmentModel> getAllDepartments(){
+        return jobDepartmentService.getDepartment();
+    }
+
 
 }
