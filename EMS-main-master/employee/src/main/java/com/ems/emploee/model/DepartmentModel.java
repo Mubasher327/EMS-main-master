@@ -33,15 +33,15 @@ public class DepartmentModel {
         return department;
     }
 
-    public DepartmentModel assemble(Department department){
-
-        DepartmentModel departmentModel=new DepartmentModel(null);
-        departmentModel.setId(department.getId());
-        departmentModel.setName(department.getName());
-        departmentModel.setDescription(department.getDescription());
-
-
-        return departmentModel;
-    }
+//    public DepartmentModel assemble(Department department){
+//
+//        DepartmentModel departmentModel=new DepartmentModel(null);
+//        departmentModel.setId(department.getId());
+//        departmentModel.setName(department.getName());
+//        departmentModel.setDescription(department.getDescription());
+//
+//
+//        return departmentModel;
+//    }
 }
 

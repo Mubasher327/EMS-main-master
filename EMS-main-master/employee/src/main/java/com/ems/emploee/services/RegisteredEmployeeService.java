@@ -24,7 +24,7 @@ public class RegisteredEmployeeService {
 @Transactional
  public EmployeeModel addEmployee(EmployeeModel employee) {
   Department department = departmentService.getDepartEntity(employee.getDepartmentModel().getId());
-  return employee.assemble(registeremployeeRepo.save(employee.dissamble()));
+  return new EmployeeModel(registeremployeeRepo.save(employee.dissamble()));
 
  }
 @Transactional
@@ -38,34 +38,25 @@ public class RegisteredEmployeeService {
   return "Deleted";
  }
 
- public EmployeeModel getEmployee(long empl_id) {
-  return new EmployeeModel(registeremployeeRepo.findById(empl_id).get());
+ public EmployeeModel getEmployee(long emplId) {
+  return new EmployeeModel(registeremployeeRepo.findById(emplId).get());
  }
- public List<EmployeeModel> getAllEmployees() {
 
-  List<EmployeeModel> employeeList = registeremployeeRepo.findAll()
-          .stream()
-          .map(EmployeeModel::new)
-          .collect(Collectors.toList());
-  return employeeList;
- }
  public List<EmployeeModel> findEmployee(Long id, String name){
- List<EmployeeModel>employeeModels = new ArrayList<>();
- if(id!=null){
-  employeeModels=List.of(registeremployeeRepo.findAll()
-          .stream().map(EmployeeModel::new)
-          .filter(employeeModel -> employeeModel.getId()==id)
-          .findFirst()
-          .get());
- } else if (name!=null) {
-  employeeModels=List.of(registeremployeeRepo.findAll()
-          .stream().map(EmployeeModel::new)
-          .filter(employeeModel -> employeeModel.getFullName().equalsIgnoreCase(name))
-          .findFirst()
-          .get());
- }else {
-employeeModels=registeremployeeRepo.findAll().stream().map(EmployeeModel::new).collect(Collectors.toList());
- }
+  List<EmployeeModel>employeeModels = new ArrayList<>();
+  if(id!=null){
+   employeeModels=List.of(registeremployeeRepo.findAll()
+           .stream().map(EmployeeModel::new)
+           .filter(employeeModel -> employeeModel.getId()==id)
+           .findFirst()
+           .get());
+  } else if (name!=null) {
+   employeeModels=registeremployeeRepo.findEmployeeByDepartment_Name(name)
+           .stream().map(EmployeeModel::new)
+           .collect(Collectors.toList());
+  }else {
+   employeeModels=registeremployeeRepo.findAll().stream().map(EmployeeModel::new).collect(Collectors.toList());
+  }
 
   return employeeModels;
  }

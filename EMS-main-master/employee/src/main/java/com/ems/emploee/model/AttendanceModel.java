@@ -1,13 +1,18 @@
 package com.ems.emploee.model;
 import com.ems.emploee.entity.Attendance;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 @Component
 @Data
+@NoArgsConstructor
 public class AttendanceModel {
     private long id;
     private Boolean isEmplPresent;
+    private Date date;
     private String timeIn;
     private String timeOut;
 
@@ -16,11 +21,12 @@ public class AttendanceModel {
     public Attendance dissamble(){
 
         Attendance attendance=new Attendance();
-        attendance.setId(id);
-        attendance.setIsEmplPresent(isEmplPresent);
-        attendance.setTimeIn(timeIn);
-        attendance.setTimeOut(timeOut);
-        attendance.setEmploy(employeeModel.dissamble());
+        attendance.setId(this.id);
+        attendance.setIsEmplPresent(this.isEmplPresent);
+        attendance.setDate(this.date);
+        attendance.setTimeIn(this.timeIn);
+        attendance.setTimeOut(this.timeOut);
+        attendance.setEmploy(this.employeeModel.dissamble());
         return attendance;
 
     }
@@ -30,9 +36,10 @@ public class AttendanceModel {
 
         attendanceModel.setId(attendance.getId());
         attendanceModel.setIsEmplPresent(attendance.getIsEmplPresent());
+        attendanceModel.setDate(attendance.getDate());
         attendanceModel.setTimeIn(attendance.getTimeIn());
         attendanceModel.setTimeOut(attendance.getTimeOut());
-        attendanceModel.setEmployeeModel(employeeModel.assemble(attendance.getEmploy()));
+        attendanceModel.setEmployeeModel(new EmployeeModel(attendance.getEmploy()));
 
         return attendanceModel;
     }

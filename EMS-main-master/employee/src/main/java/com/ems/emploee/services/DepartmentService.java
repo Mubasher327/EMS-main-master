@@ -8,26 +8,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class DepartmentService {
     @Autowired
-    private departmentrepository jobdepartmentRepo;
+    private departmentrepository jobDepartmentRepo;
 
 
     public DepartmentModel addDepartment(DepartmentModel department) {
-        return  department.assemble(jobdepartmentRepo.save(department.dissamble()));
+        return  new DepartmentModel(jobDepartmentRepo.save(department.dissamble()));
     }
 
     public String deleteDepartment(long departId) {
-        jobdepartmentRepo.deleteById(departId);
+        jobDepartmentRepo.deleteById(departId);
         return "Employee Department Details Deleted SuccessFully";
     }
     public Department getDepartEntity(long id){
-        return jobdepartmentRepo.findById(id).get();
+        return jobDepartmentRepo.findById(id).get();
     }
     public List<DepartmentModel> getDepartment(){
-        return jobdepartmentRepo.findAll().stream().map(DepartmentModel::new).collect(Collectors.toList());
+        return jobDepartmentRepo.findAll().stream().map(DepartmentModel::new).collect(Collectors.toList());
     }
 }

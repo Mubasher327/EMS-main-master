@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/Employee")
+@RequestMapping("/employee")
 public class RegisterEmployeeController {
     @Autowired
     RegisteredEmployeeService registeredEmployeeServices;
@@ -47,19 +47,10 @@ public class RegisterEmployeeController {
        return registeredEmployeeServices.deleteEmployee(empl_id);
 }
 
-@GetMapping("/getById/{id}")
 
-   public EmployeeModel getEmployee(@PathVariable(name = "id") long empl_Id)
-    {
-        return registeredEmployeeServices.getEmployee(empl_Id);
-}
 
-@GetMapping("/List")
-private List<EmployeeModel> getAllEmployees() {
-    return registeredEmployeeServices.getAllEmployees();
-}
 @GetMapping("/search")
-    private List<EmployeeModel> getEmployeeById(@PathVariable(value = "id")Long id){
-    return registeredEmployeeServices.findEmployee(id,null);
+    private List<EmployeeModel> getEmployeeById(@RequestParam(name = "id",required = false)Long id , @RequestParam(name = "name",required = false)String name){
+    return registeredEmployeeServices.findEmployee(id,name);
 }
 }

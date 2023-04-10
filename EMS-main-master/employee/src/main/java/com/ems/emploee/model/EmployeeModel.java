@@ -47,22 +47,22 @@ public class EmployeeModel {
     return employee;
 }
 
-public EmployeeModel assemble(Employee employee){
-
-    EmployeeModel employeeModel=new EmployeeModel(null);
-    DepartmentModel departmentModel1=new DepartmentModel(null);
-
-    employeeModel.setId(employee.getId());
-    employeeModel.setFullName(employee.getFullName());
-    employeeModel.setEmail(employee.getEmail());
-    employeeModel.setPhoneNo(employee.getPhoneNo());
-    employeeModel.setGender(employee.getGender());
-    employeeModel.setAge(employee.getAge());
-    employeeModel.setDesignation(employee.getDesignation());
-    employeeModel.setSalary(employee.getSalary());
-    employeeModel.setDepartmentModel(departmentModel1.assemble(employee.getDepartment()));
-
-    return employeeModel;
-    }
+//public EmployeeModel assemble(Employee employee){
+//
+//    EmployeeModel employeeModel=new EmployeeModel(null);
+//    DepartmentModel departmentModel1=new DepartmentModel(null);
+//
+//    employeeModel.setId(employee.getId());
+//    employeeModel.setFullName(employee.getFullName());
+//    employeeModel.setEmail(employee.getEmail());
+//    employeeModel.setPhoneNo(employee.getPhoneNo());
+//    employeeModel.setGender(employee.getGender());
+//    employeeModel.setAge(employee.getAge());
+//    employeeModel.setDesignation(employee.getDesignation());
+//    employeeModel.setSalary(employee.getSalary());
+//    employeeModel.setDepartmentModel(new DepartmentModel(employee.getDepartment()));
+//
+//    return employeeModel;
+//    }
 }
 
