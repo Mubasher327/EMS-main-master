@@ -45,14 +45,14 @@ public class RegisteredEmployeeService {
  public List<EmployeeModel> findEmployee(Long id, String name){
   List<EmployeeModel>employeeModels = new ArrayList<>();
   if(id!=null){
-   employeeModels=List.of(registeremployeeRepo.findAll()
-           .stream().map(EmployeeModel::new)
-           .filter(employeeModel -> employeeModel.getId()==id)
-           .findFirst()
-           .get());
+   employeeModels=registeremployeeRepo.findEmployeeByDepartment_Id(id)
+           .stream()
+           .map(EmployeeModel::new)
+           .collect(Collectors.toList());
   } else if (name!=null) {
    employeeModels=registeremployeeRepo.findEmployeeByDepartment_Name(name)
-           .stream().map(EmployeeModel::new)
+           .stream()
+           .map(EmployeeModel::new)
            .collect(Collectors.toList());
   }else {
    employeeModels=registeremployeeRepo.findAll().stream().map(EmployeeModel::new).collect(Collectors.toList());
